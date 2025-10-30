@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { API } from "../services/api";
 
 function Checkout() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Checkout() {
   const handlePay = () => {
     setLoading(true);
     setError(null);
-    fetch("http://localhost:5000/bookings", {
+    fetch(`${API}/bookings`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -56,7 +57,7 @@ function Checkout() {
     setPromoApplied(null);
     if (!promo.trim()) return;
     setPromoMessage("Checking promo...");
-    fetch("http://localhost:5000/promo/validate", {
+    fetch(`${API}/promo/validate`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ code: promo.trim() })

@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { API } from "../services/api";
 
 function Details() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ function Details() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/experiences/${id}`)
+    fetch(`${API}/experiences/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setExperience(data);

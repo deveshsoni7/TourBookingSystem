@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import ExperienceCard from "../components/ExperienceCard";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { API } from "../services/api";
 
 function Home() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function Home() {
   const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/experiences")
+    fetch(`${API}/experiences`)
       .then((res) => res.json())
       .then((data) => {
         setExperiences(data);
